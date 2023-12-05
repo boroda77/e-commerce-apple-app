@@ -63,7 +63,7 @@ const AccountForm: React.FC = () => {
             passwordConfirm: '',
           })
         } else {
-          setError('There was a problem updating your account.')
+          setError('Під час оновлення облікового запису виникла проблема.')
         }
       }
     },
@@ -74,7 +74,7 @@ const AccountForm: React.FC = () => {
     if (user === null) {
       router.push(
         `/login?error=${encodeURIComponent(
-          'You must be logged in to view this page.',
+          'Ви повинні увійти, щоб переглянути цю сторінку.',
         )}&redirect=${encodeURIComponent('/account')}`,
       )
     }
@@ -96,43 +96,43 @@ const AccountForm: React.FC = () => {
       {!changePassword ? (
         <Fragment>
           <p>
-            {'Change your account details below, or '}
+            {'Змініть дані свого облікового запису нижче або '}
             <button
               type="button"
               className={classes.changePassword}
               onClick={() => setChangePassword(!changePassword)}
             >
-              click here
+              натисніть тут
             </button>
-            {' to change your password.'}
+            {' щоб змінити свій пароль.'}
           </p>
           <Input
             name="email"
-            label="Email Address"
+            label="Адреса електронної пошти"
             required
             register={register}
             error={errors.email}
             type="email"
           />
-          <Input name="name" label="Name" register={register} error={errors.name} />
+          <Input name="name" label="Ім'я" register={register} error={errors.name} />
         </Fragment>
       ) : (
         <Fragment>
           <p>
-            {'Change your password below, or '}
+            {'Змініть свій пароль нижче або '}
             <button
               type="button"
               className={classes.changePassword}
               onClick={() => setChangePassword(!changePassword)}
             >
-              cancel
+              скасувати
             </button>
             .
           </p>
           <Input
             name="password"
             type="password"
-            label="Password"
+            label="Пароль"
             required
             register={register}
             error={errors.password}
@@ -140,17 +140,17 @@ const AccountForm: React.FC = () => {
           <Input
             name="passwordConfirm"
             type="password"
-            label="Confirm Password"
+            label="Підтвердьте пароль"
             required
             register={register}
-            validate={value => value === password.current || 'The passwords do not match'}
+            validate={value => value === password.current || 'Паролі не збігаються'}
             error={errors.passwordConfirm}
           />
         </Fragment>
       )}
       <Button
         type="submit"
-        label={isLoading ? 'Processing' : changePassword ? 'Change Password' : 'Update Account'}
+        label={isLoading ? 'Обробка' : changePassword ? 'Змінити пароль' : 'Оновити акаунт'}
         disabled={isLoading}
         appearance="primary"
         className={classes.submit}
